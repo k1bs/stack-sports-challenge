@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import RosterContainer from './components/RosterContainer'
+import RosterContainer from './components/RosterContainer.jsx'
 import './App.css'
 
 class App extends Component {

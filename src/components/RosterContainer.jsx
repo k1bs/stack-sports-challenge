@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Player from './Player.jsx'
 import faker from 'faker'
 
 class RosterContainer extends Component {
@@ -28,7 +29,7 @@ class RosterContainer extends Component {
 
   renderRoster () {
     return this.state.roster.map((player, index) => {
-      return <p key={index}>{player.firstName}</p>
+      return <Player key={index} player={player} />
     })
   }
 

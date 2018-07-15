@@ -35,12 +35,12 @@ class RosterContainer extends Component {
 
   render () {
     return (
-      <div>
+      <section className='section'>
         <p>Roster Container</p>
-        <div>
+        <div className='container'>
           {this.renderRoster()}
         </div>
-      </div>
+      </section>
     )
   }
 }

@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class Player extends Component {
-  constructor (props) {
-    super(props)
-  }
   render () {
     return (
       <article className='box'>

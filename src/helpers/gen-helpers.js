@@ -60,7 +60,10 @@ genHelpers.scoreGen = () => {
     }
   }
   generator()
-  return scoreArray
+  return {
+    scoreArray,
+    sumArray
+  }
 }
 
 export default genHelpers

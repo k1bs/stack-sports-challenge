@@ -21,14 +21,18 @@ class RosterContainer extends Component {
     let newRoster = []
     let firstNameArray = genHelpers.firstNameGen()
     let lastNameArray = genHelpers.lastNameGen()
-    let scoreArray = genHelpers.scoreGen()
+    let {scoreArray, sumArray} = genHelpers.scoreGen()
     for (let i = 0; i < 15; i++) {
+      let alphaNumeric = `${firstNameArray[i].charAt(0)}${lastNameArray[i].charAt(0)}`
+      let numbers = parseInt(sumArray[i])
+      alphaNumeric = alphaNumeric + numbers + numbers
       let startingStatus = i < 10
       newRoster.push({
         firstName: firstNameArray[i],
         lastName: lastNameArray[i],
         scores: scoreArray[i],
-        startingStatus
+        startingStatus,
+        alphaNumeric
       })
     }
     this.setState({

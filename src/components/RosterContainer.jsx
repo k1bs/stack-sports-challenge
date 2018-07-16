@@ -54,12 +54,13 @@ class RosterContainer extends Component {
     return (
       <section className='section'>
         <div className='container'>
-          <p className='subtitle'>Starting Lineup</p>
-          <div className='tile is-ancestor'>
-            <div className='tile is-parent is-8 is-vertical'>
+          <div className='columns'>
+            <div className='column is-8'>
+              <p className='subtitle'>Starting Lineup</p>
               {this.renderStarters()}
             </div>
-            <div className='tile is-parent is-4 is-vertical'>
+            <div className='column'>
+              <p className='subtitle'>Bench</p>
               {this.renderSubs()}
             </div>
           </div>

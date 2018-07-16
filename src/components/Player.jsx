@@ -2,7 +2,7 @@ import React from 'react'
 
 const Player = (props) => {
   return (
-    <article className='tile is-child box'>
+    <article className='is-child box'>
       <h5 className='title is-5'>{props.player.firstName} {props.player.lastName}</h5>
       <h5 className='subtitle is-5'>{props.player.firstName} {props.player.lastName}</h5>
       <p>Strength: {props.player.strength}</p>

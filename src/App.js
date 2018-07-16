@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import Header from './components/Header.jsx'
-import RosterContainer from './components/RosterContainer.jsx'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import RosterContainer from './components/RosterContainer'
 
 class App extends Component {
   render () {
@@ -8,6 +9,7 @@ class App extends Component {
       <div className='App'>
         <Header />
         <RosterContainer />
+        <Footer />
       </div>
     )
   }

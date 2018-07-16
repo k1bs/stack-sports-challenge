@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import Player from './Player.jsx'
+import Player from './Player'
+import EditPlayerForm from './EditPlayerForm'
 import genHelpers from '../helpers/gen-helpers'
 
 class RosterContainer extends Component {
@@ -11,6 +12,7 @@ class RosterContainer extends Component {
       usedScores: [],
       editIndex: null
     }
+    this.handleEditClick = this.handleEditClick.bind(this)
   }
 
   componentDidMount () {
@@ -54,10 +56,17 @@ class RosterContainer extends Component {
 
   renderPlayerOrForm (player, index) {
     if (player.rosterPosition === this.state.editIndex) {
-      return <p>Pretend Form</p>
+      return <EditPlayerForm key={index} player={player} />
     } else {
-      return <Player key={index} player={player} />
+      return <Player key={index} player={player} handleEditClick={this.handleEditClick} />
     }
+  }
+
+  handleEditClick (player) {
+    console.log(player)
+    this.setState({
+      editIndex: player.rosterPosition
+    })
   }
 
   renderSubs () {

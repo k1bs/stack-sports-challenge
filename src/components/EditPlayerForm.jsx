@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-class Player extends Component {
+class EditPlayerForm extends Component {
   constructor (props) {
     super(props)
+    this.state = {
+      firstName: props.player.firstName,
+      lastName: props.player.lastName
+    }
   }
+
   render () {
     return (
       <article className='box'>
@@ -13,7 +18,7 @@ class Player extends Component {
             <h4 className='title is-4'>{this.props.player.firstName} {this.props.player.lastName}</h4>
           </div>
           <div className='level-right'>
-            <span onClick={() => this.props.handleEditClick(this.props.player)} className='icon'><FontAwesomeIcon icon='edit' /></span>
+            <span className='icon'><FontAwesomeIcon icon='save' /></span>
           </div>
         </nav>
         <h6 className='subtitle is-6'>{this.props.player.alphaNumeric}</h6>
@@ -25,4 +30,4 @@ class Player extends Component {
   }
 }
 
-export default Player
+export default EditPlayerForm

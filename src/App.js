@@ -4,6 +4,10 @@ import Landing from './components/Landing'
 import Footer from './components/Footer'
 import RosterContainer from './components/RosterContainer'
 import './App.css'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faEdit, faSave } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faEdit, faSave)
 
 class App extends Component {
   constructor () {

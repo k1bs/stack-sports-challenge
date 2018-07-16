@@ -25,7 +25,7 @@ class RosterContainer extends Component {
     for (let i = 0; i < 15; i++) {
       let alphaNumeric = `${firstNameArray[i].charAt(0)}${lastNameArray[i].charAt(0)}`
       let numbers = parseInt(sumArray[i], 10)
-      alphaNumeric = alphaNumeric + numbers + numbers
+      alphaNumeric = alphaNumeric + '00' + numbers
       let startingStatus = i < 10
       newRoster.push({
         firstName: firstNameArray[i],

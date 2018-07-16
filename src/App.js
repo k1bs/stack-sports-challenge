@@ -4,12 +4,32 @@ import Footer from './components/Footer'
 import RosterContainer from './components/RosterContainer'
 
 class App extends Component {
+  constructor () {
+    super()
+    this.state = {
+      rosterName: '',
+      namingMode: true
+    }
+  }
+
+  handleRosterNameSubmit (rosterName) {
+    this.setState({
+      rosterName,
+      namingMode: false
+    })
+  }
+
   render () {
+    // TODO: add bang in front of namingMode
     return (
       <div className='App'>
-        <Header />
-        <RosterContainer />
-        <Footer />
+        {this.state.namingMode
+          ? <div>
+            <Header />
+            <RosterContainer />
+            <Footer />
+          </div>
+          : <p>set a nme</p>}
       </div>
     )
   }

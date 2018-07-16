@@ -24,7 +24,7 @@ class RosterContainer extends Component {
     let {scoreArray, sumArray} = genHelpers.scoreGen()
     for (let i = 0; i < 15; i++) {
       let alphaNumeric = `${firstNameArray[i].charAt(0)}${lastNameArray[i].charAt(0)}`
-      let numbers = parseInt(sumArray[i])
+      let numbers = parseInt(sumArray[i], 10)
       alphaNumeric = alphaNumeric + numbers + numbers
       let startingStatus = i < 10
       newRoster.push({

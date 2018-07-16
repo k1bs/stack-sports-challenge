@@ -4,16 +4,38 @@ class Landing extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      teamName: ''
+      teamName: '',
+      valid: '',
+      message: ''
     }
     this.handleInputChange = this.handleInputChange.bind(this)
+    this.submitHelper = this.submitHelper.bind(this)
   }
 
   handleInputChange (event) {
     const value = event.target.value
+    let validity
+    if (value.length > 1) {
+      validity = 'valid'
+    } else {
+      validity = 'invalid'
+    }
     this.setState({
-      teamName: value
+      teamName: value,
+      valid: validity,
+      message: ''
     })
+  }
+
+  submitHelper (event) {
+    event.preventDefault()
+    if (this.state.valid === 'valid') {
+      this.props.handleRosterNameSubmit(event, this.state.teamName)
+    } else {
+      this.setState({
+        message: 'Team Name must be at least 2 characters'
+      })
+    }
   }
 
   render () {
@@ -21,12 +43,13 @@ class Landing extends Component {
       <section className='hero is-primary is-bold is-fullheight'>
         <div className='hero-body'>
           <div className='container name-container'>
-            <form onSubmit={(event) => this.props.handleRosterNameSubmit(event, this.state.teamName)}>
+            <form onSubmit={this.submitHelper}>
               <div className='field'>
                 <label className='label is-large has-text-white'>Name your Team</label>
                 <div className='control'>
-                  <input class='input is-large' type='text' onChange={this.handleInputChange} value={this.state.teamName} placeholder='Your Team Name' />
+                  <input className={'input is-large ' + (this.state.message.length > 0 ? 'is-danger' : '')} type='text' onChange={this.handleInputChange} value={this.state.teamName} placeholder='Your Team Name' />
                 </div>
+                <p className='help has-text-white'>{this.state.message}</p>
               </div>
               <div className='field'>
                 <div className='control'>

@@ -8,7 +8,8 @@ class RosterContainer extends Component {
     this.state = {
       roster: [],
       usedNames: [],
-      usedScores: []
+      usedScores: [],
+      editIndex: null
     }
   }
 
@@ -22,6 +23,7 @@ class RosterContainer extends Component {
     let lastNameArray = genHelpers.lastNameGen()
     let {scoreArray, sumArray} = genHelpers.scoreGen()
     for (let i = 0; i < 15; i++) {
+      let rosterPosition = i
       let alphaNumeric = `${firstNameArray[i].charAt(0)}${lastNameArray[i].charAt(0)}`
       let numbers = parseInt(sumArray[i], 10)
       alphaNumeric = alphaNumeric + '00' + numbers
@@ -31,7 +33,8 @@ class RosterContainer extends Component {
         lastName: lastNameArray[i],
         scores: scoreArray[i],
         startingStatus,
-        alphaNumeric
+        alphaNumeric,
+        rosterPosition
       })
     }
     this.setState({
@@ -42,17 +45,25 @@ class RosterContainer extends Component {
   renderStarters () {
     return this.state.roster.map((player, index) => {
       if (player.startingStatus) {
-        return <Player key={index} player={player} />
+        return this.renderPlayerOrForm(player, index)
       } else {
         return ''
       }
     })
   }
 
+  renderPlayerOrForm (player, index) {
+    if (player.rosterPosition === this.state.editIndex) {
+      return <p>Pretend Form</p>
+    } else {
+      return <Player key={index} player={player} />
+    }
+  }
+
   renderSubs () {
     return this.state.roster.map((player, index) => {
       if (!player.startingStatus) {
-        return <Player key={index} player={player} />
+        return this.renderPlayerOrForm(player, index)
       } else {
         return ''
       }

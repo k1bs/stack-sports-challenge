@@ -79,7 +79,14 @@ class RosterContainer extends Component {
 
   handleSaveClick (playerPosition, newNameObject) {
     let match = this.state.usedNames.find(card => (card.firstName === newNameObject.firstName) && (card.lastName === newNameObject.lastName))
-    if (match && (this.state.usedNames.indexOf(match) !== playerPosition)) {
+    if (newNameObject.firstName.charAt(0) === ' ' ||
+        newNameObject.lastName.charAt(0) === ' ' ||
+        newNameObject.firstName.length === 0 ||
+        newNameObject.lastName.length === 0) {
+      this.setState({
+        nameErrorMessage: "Name can't be blank or begin with a space."
+      })
+    } else if (match && (this.state.usedNames.indexOf(match) !== playerPosition)) {
       this.setState({
         nameErrorMessage: 'Name already in use.'
       })

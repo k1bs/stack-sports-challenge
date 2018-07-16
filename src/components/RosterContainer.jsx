@@ -24,9 +24,11 @@ class RosterContainer extends Component {
       newRoster.push({
         firstName: this.nameGenerator('first'),
         lastName: this.nameGenerator('last'),
-        speed: Math.round((Math.random() * 32) + 1),
-        strength: Math.round((Math.random() * 32) + 1),
-        agility: Math.round((Math.random() * 32) + 1),
+        scores: {
+          speed: Math.round((Math.random() * 32) + 1),
+          strength: Math.round((Math.random() * 32) + 1),
+          agility: Math.round((Math.random() * 32) + 1)
+        },
         startingStatus
       })
     }

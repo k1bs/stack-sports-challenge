@@ -40,7 +40,19 @@ class Landing extends Component {
 
   render () {
     return (
-      <section className='hero is-primary is-bold is-fullheight'>
+      <section className='hero is-dark is-fullheight'>
+        <div className='hero-head'>
+          <nav className='navbar'>
+            <div className='container navbar-menu'>
+              <div className='navbar-start'>
+                <h4 className='navbar-item title is-4'>Stack Sports</h4>
+              </div>
+              <div className='navbar-end'>
+                <span className='navbar-item'>Coding Challenge by Alex Kibler</span>
+              </div>
+            </div>
+          </nav>
+        </div>
         <div className='hero-body'>
           <div className='container name-container'>
             <form onSubmit={this.submitHelper}>

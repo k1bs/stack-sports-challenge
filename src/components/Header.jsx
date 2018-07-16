@@ -8,7 +8,7 @@ const Header = (props) => {
           <h1 className='title'>
             {props.rosterName}
           </h1>
-          <p className='subtitle'>Home of Champions</p>
+          <p className='subtitle'>Where Champions Play</p>
         </div>
       </div>
     </section>

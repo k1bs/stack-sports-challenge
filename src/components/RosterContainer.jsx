@@ -14,14 +14,17 @@ class RosterContainer extends Component {
   componentWillMount () {
     let newRoster = []
     for (let i = 0; i < 15; i++) {
+      let startingStatus = i < 10
       newRoster.push({
         firstName: faker.name.firstName(),
         lastName: faker.name.lastName(),
         speed: Math.round((Math.random() * 32) + 1),
         strength: Math.round((Math.random() * 32) + 1),
-        agility: Math.round((Math.random() * 32) + 1)
+        agility: Math.round((Math.random() * 32) + 1),
+        startingStatus
       })
     }
+    console.log(newRoster)
     this.setState({
       roster: newRoster
     })
@@ -36,9 +39,16 @@ class RosterContainer extends Component {
   render () {
     return (
       <section className='section'>
-        <p>Roster Container</p>
         <div className='container'>
-          {this.renderRoster()}
+          <p className='subtitle'>Starting Lineup</p>
+          <div className='tile is-ancestor'>
+            <div className='tile is-parent is-8 is-vertical'>
+              {this.renderRoster()}
+            </div>
+            <div className='tile is-parent is-4 is-vertical'>
+              {this.renderRoster()}
+            </div>
+          </div>
         </div>
       </section>
     )

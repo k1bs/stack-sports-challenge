@@ -4,7 +4,7 @@ const Footer = (props) => {
   return (
     <footer className='footer'>
       <div className='content has-text-centered'>
-        <p>You should hire Alex</p>
+        <p>Coding Challenge by Alex Kibler</p>
       </div>
     </footer>
   )

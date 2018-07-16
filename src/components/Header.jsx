@@ -6,7 +6,7 @@ const Header = (props) => {
       <div className='hero-body'>
         <div className='container'>
           <h1 className='title'>
-            Team Name goes here
+            {props.rosterName}
           </h1>
           <p className='subtitle'>Home of Champions</p>
         </div>

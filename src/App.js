@@ -7,7 +7,7 @@ class App extends Component {
   constructor () {
     super()
     this.state = {
-      rosterName: '',
+      rosterName: 'farts',
       namingMode: true
     }
   }
@@ -25,7 +25,7 @@ class App extends Component {
       <div className='App'>
         {this.state.namingMode
           ? <div>
-            <Header />
+            <Header rosterName={this.state.rosterName} />
             <RosterContainer />
             <Footer />
           </div>

@@ -6,7 +6,6 @@ class RosterContainer extends Component {
   constructor () {
     super()
     this.state = {
-      rosterName: '',
       roster: [],
       usedNames: [],
       usedScores: []

@@ -65,7 +65,7 @@ class Landing extends Component {
               </div>
               <div className='field'>
                 <div className='control'>
-                  <button className='button is-link is-large'>Submit</button>
+                  <button className='button is-primary is-large'>Submit</button>
                 </div>
               </div>
             </form>

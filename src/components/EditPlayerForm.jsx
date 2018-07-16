@@ -46,7 +46,7 @@ class EditPlayerForm extends Component {
           </div>
           <div className='field is-grouped is-grouped-right'>
             <div className='control'>
-              <button className='button is-link'>Save</button>
+              <button className='button is-primary'>Save</button>
             </div>
           </div>
         </form>

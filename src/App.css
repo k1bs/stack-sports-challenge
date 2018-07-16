@@ -5,3 +5,7 @@
 .icon {
   cursor: pointer;
 }
+
+.icon:hover {
+  color: hsl(171, 100%, 41%);
+}

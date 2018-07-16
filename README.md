@@ -8,7 +8,7 @@ To check out my submission, follow the instructions below.
 
 ### Prerequisites
 
-You're gonna need `node` and `npm` or `yarn`. Make sure you those.
+You're gonna need `node` and `npm` or `yarn`. Make sure you have those.
 
 ### Installing
 

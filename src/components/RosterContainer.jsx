@@ -13,6 +13,7 @@ class RosterContainer extends Component {
       editIndex: null
     }
     this.handleEditClick = this.handleEditClick.bind(this)
+    this.handleSaveClick = this.handleSaveClick.bind(this)
   }
 
   componentDidMount () {
@@ -56,16 +57,28 @@ class RosterContainer extends Component {
 
   renderPlayerOrForm (player, index) {
     if (player.rosterPosition === this.state.editIndex) {
-      return <EditPlayerForm key={index} player={player} />
+      return <EditPlayerForm key={index} player={player} handleSaveClick={this.handleSaveClick} />
     } else {
       return <Player key={index} player={player} handleEditClick={this.handleEditClick} />
     }
   }
 
   handleEditClick (player) {
-    console.log(player)
     this.setState({
       editIndex: player.rosterPosition
+    })
+  }
+
+  handleSaveClick (player, newNameObject) {
+    let newPlayerCard = this.state.roster[player]
+    newPlayerCard.firstName = newNameObject.firstName
+    newPlayerCard.lastName = newNameObject.lastName
+    let roster = this.state.roster
+    roster.splice(player.rosterPosition, 1, newPlayerCard)
+    console.log(roster.length)
+    this.setState({
+      roster,
+      editIndex: null
     })
   }
 

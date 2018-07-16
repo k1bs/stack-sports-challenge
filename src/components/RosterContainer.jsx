@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Player from './Player.jsx'
+import genHelpers from '../helpers/gen-helpers'
 import faker from 'faker'
 
 class RosterContainer extends Component {
@@ -19,56 +20,21 @@ class RosterContainer extends Component {
 
   generateRoster () {
     let newRoster = []
+    let firstNameArray = genHelpers.firstNameGen()
+    let lastNameArray = genHelpers.lastNameGen()
+    let scoreArray = genHelpers.scoreGen()
     for (let i = 0; i < 15; i++) {
       let startingStatus = i < 10
       newRoster.push({
-        firstName: this.nameGenerator('first'),
-        lastName: this.nameGenerator('last'),
-        scores: this.scoreGenerator(),
+        firstName: firstNameArray[i],
+        lastName: lastNameArray[i],
+        scores: scoreArray[i],
         startingStatus
       })
     }
     this.setState({
       roster: newRoster
     })
-  }
-
-  nameGenerator (type) {
-    console.log(this.state.usedNames)
-    let name
-    switch (type) {
-      case 'first':
-        name = faker.name.firstName()
-        break
-      case 'last':
-        name = faker.name.lastName()
-        break
-    }
-    if (!this.state.usedNames.includes(name)) {
-      this.setState(prevState => ({
-        usedNames: [...prevState.usedNames, name]
-      }))
-      return name
-    } else {
-      this.nameGenerator(type)
-    }
-  }
-
-  scoreGenerator () {
-    let scores = {
-      speed: Math.round((Math.random() * 32) + 1),
-      strength: Math.round((Math.random() * 32) + 1),
-      agility: Math.round((Math.random() * 32) + 1)
-    }
-    let sum = Object.values(scores).reduce((a, b) => a + b)
-    if (!this.state.usedScores.includes(sum)) {
-      this.setState({
-        usedScores: [...this.state.usedScores, sum]
-      })
-      return scores
-    } else {
-      this.scoreGenerator()
-    }
   }
 
   renderStarters () {

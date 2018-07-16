@@ -42,6 +42,7 @@ class EditPlayerForm extends Component {
             <div className='control'>
               <input onChange={this.handleChange} name='lastName' className='input' type='text' value={this.state.lastName} />
             </div>
+            <p className='help is-danger'>{this.props.message}</p>
           </div>
           <div className='field is-grouped is-grouped-right'>
             <div className='control'>

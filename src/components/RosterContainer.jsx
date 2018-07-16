@@ -30,9 +30,23 @@ class RosterContainer extends Component {
     })
   }
 
-  renderRoster () {
+  renderStarters () {
     return this.state.roster.map((player, index) => {
-      return <Player key={index} player={player} />
+      if (player.startingStatus) {
+        return <Player key={index} player={player} />
+      } else {
+        return ''
+      }
+    })
+  }
+
+  renderSubs () {
+    return this.state.roster.map((player, index) => {
+      if (!player.startingStatus) {
+        return <Player key={index} player={player} />
+      } else {
+        return ''
+      }
     })
   }
 
@@ -43,10 +57,10 @@ class RosterContainer extends Component {
           <p className='subtitle'>Starting Lineup</p>
           <div className='tile is-ancestor'>
             <div className='tile is-parent is-8 is-vertical'>
-              {this.renderRoster()}
+              {this.renderStarters()}
             </div>
             <div className='tile is-parent is-4 is-vertical'>
-              {this.renderRoster()}
+              {this.renderSubs()}
             </div>
           </div>
         </div>

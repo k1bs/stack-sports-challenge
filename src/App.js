@@ -13,7 +13,7 @@ class App extends Component {
   constructor () {
     super()
     this.state = {
-      rosterName: 'farts',
+      rosterName: '',
       namingMode: true
     }
     this.handleRosterNameSubmit = this.handleRosterNameSubmit.bind(this)

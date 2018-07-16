@@ -69,15 +69,15 @@ class RosterContainer extends Component {
     })
   }
 
-  handleSaveClick (player, newNameObject) {
-    let newPlayerCard = this.state.roster[player]
+  handleSaveClick (playerPosition, newNameObject) {
+    // The JSON parsing is a concise way to deep copy by value an object/iterable
+    let newPlayerCard = JSON.parse(JSON.stringify(this.state.roster[playerPosition]))
     newPlayerCard.firstName = newNameObject.firstName
     newPlayerCard.lastName = newNameObject.lastName
-    let roster = this.state.roster
-    roster.splice(player.rosterPosition, 1, newPlayerCard)
-    console.log(roster.length)
+    let newRoster = JSON.parse(JSON.stringify(this.state.roster))
+    newRoster.splice(playerPosition, 1, newPlayerCard)
     this.setState({
-      roster,
+      roster: newRoster,
       editIndex: null
     })
   }

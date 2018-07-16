@@ -13,7 +13,7 @@ class RosterContainer extends Component {
     }
   }
 
-  componentWillMount () {
+  componentDidMount () {
     this.generateRoster()
   }
 
@@ -24,11 +24,7 @@ class RosterContainer extends Component {
       newRoster.push({
         firstName: this.nameGenerator('first'),
         lastName: this.nameGenerator('last'),
-        scores: {
-          speed: Math.round((Math.random() * 32) + 1),
-          strength: Math.round((Math.random() * 32) + 1),
-          agility: Math.round((Math.random() * 32) + 1)
-        },
+        scores: this.scoreGenerator(),
         startingStatus
       })
     }
@@ -38,6 +34,7 @@ class RosterContainer extends Component {
   }
 
   nameGenerator (type) {
+    console.log(this.state.usedNames)
     let name
     switch (type) {
       case 'first':
@@ -48,12 +45,29 @@ class RosterContainer extends Component {
         break
     }
     if (!this.state.usedNames.includes(name)) {
-      this.setState({
-        usedNames: [...this.state.usedNames, name]
-      })
+      this.setState(prevState => ({
+        usedNames: [...prevState.usedNames, name]
+      }))
       return name
     } else {
       this.nameGenerator(type)
+    }
+  }
+
+  scoreGenerator () {
+    let scores = {
+      speed: Math.round((Math.random() * 32) + 1),
+      strength: Math.round((Math.random() * 32) + 1),
+      agility: Math.round((Math.random() * 32) + 1)
+    }
+    let sum = Object.values(scores).reduce((a, b) => a + b)
+    if (!this.state.usedScores.includes(sum)) {
+      this.setState({
+        usedScores: [...this.state.usedScores, sum]
+      })
+      return scores
+    } else {
+      this.scoreGenerator()
     }
   }
 

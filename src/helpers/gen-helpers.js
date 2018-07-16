@@ -8,7 +8,6 @@ genHelpers.firstNameGen = () => {
     let tryName = faker.name.firstName()
     if (firstNameArray.length < 15) {
       if (firstNameArray.includes(tryName)) {
-        console.log('already present')
         generator()
       } else {
         firstNameArray.push(tryName)
@@ -26,7 +25,6 @@ genHelpers.lastNameGen = () => {
     let tryName = faker.name.lastName()
     if (lastNameArray.length < 15) {
       if (lastNameArray.includes(tryName)) {
-        console.log('already present')
         generator()
       } else {
         lastNameArray.push(tryName)
@@ -50,7 +48,6 @@ genHelpers.scoreGen = () => {
     let sum = Object.values(tryScore).reduce((a, b) => a + b)
     if (sumArray.length < 15) {
       if (sumArray.includes(sum)) {
-        console.log('already present')
         generator()
       } else {
         scoreArray.push(tryScore)

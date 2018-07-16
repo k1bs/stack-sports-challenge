@@ -10,7 +10,8 @@ class RosterContainer extends Component {
       roster: [],
       usedNames: [],
       usedScores: [],
-      editIndex: null
+      editIndex: null,
+      nameErrorMessage: ''
     }
     this.handleEditClick = this.handleEditClick.bind(this)
     this.handleSaveClick = this.handleSaveClick.bind(this)
@@ -22,6 +23,7 @@ class RosterContainer extends Component {
 
   generateRoster () {
     let newRoster = []
+    let usedNames = []
     let firstNameArray = genHelpers.firstNameGen()
     let lastNameArray = genHelpers.lastNameGen()
     let {scoreArray, sumArray} = genHelpers.scoreGen()
@@ -39,9 +41,14 @@ class RosterContainer extends Component {
         alphaNumeric,
         rosterPosition
       })
+      usedNames.push({
+        firstName: firstNameArray[i],
+        lastName: lastNameArray[i]
+      })
     }
     this.setState({
-      roster: newRoster
+      roster: newRoster,
+      usedNames
     })
   }
 
@@ -57,7 +64,7 @@ class RosterContainer extends Component {
 
   renderPlayerOrForm (player, index) {
     if (player.rosterPosition === this.state.editIndex) {
-      return <EditPlayerForm key={index} player={player} handleSaveClick={this.handleSaveClick} />
+      return <EditPlayerForm key={index} player={player} message={this.state.nameErrorMessage} handleSaveClick={this.handleSaveClick} />
     } else {
       return <Player key={index} player={player} handleEditClick={this.handleEditClick} />
     }
@@ -65,21 +72,33 @@ class RosterContainer extends Component {
 
   handleEditClick (player) {
     this.setState({
-      editIndex: player.rosterPosition
+      editIndex: player.rosterPosition,
+      nameErrorMessage: ''
     })
   }
 
   handleSaveClick (playerPosition, newNameObject) {
-    // The JSON parsing is a concise way to deep copy by value an object/iterable
-    let newPlayerCard = JSON.parse(JSON.stringify(this.state.roster[playerPosition]))
-    newPlayerCard.firstName = newNameObject.firstName
-    newPlayerCard.lastName = newNameObject.lastName
-    let newRoster = JSON.parse(JSON.stringify(this.state.roster))
-    newRoster.splice(playerPosition, 1, newPlayerCard)
-    this.setState({
-      roster: newRoster,
-      editIndex: null
-    })
+    let match = this.state.usedNames.find(card => (card.firstName === newNameObject.firstName) && (card.lastName === newNameObject.lastName))
+    if (match && (this.state.usedNames.indexOf(match) !== playerPosition)) {
+      this.setState({
+        nameErrorMessage: 'Name already in use.'
+      })
+    } else {
+      // The JSON parsing is a concise way to deep copy by value an object/iterable
+      let newPlayerCard = JSON.parse(JSON.stringify(this.state.roster[playerPosition]))
+      newPlayerCard.firstName = newNameObject.firstName
+      newPlayerCard.lastName = newNameObject.lastName
+      let newRoster = JSON.parse(JSON.stringify(this.state.roster))
+      let newUsedNames = JSON.parse(JSON.stringify(this.state.usedNames))
+      newUsedNames.splice(playerPosition, 1, {firstName: newNameObject.firstName, lastName: newNameObject.lastName})
+      newRoster.splice(playerPosition, 1, newPlayerCard)
+      this.setState({
+        roster: newRoster,
+        usedNames: newUsedNames,
+        editIndex: null,
+        nameErrorMessage: ''
+      })
+    }
   }
 
   renderSubs () {

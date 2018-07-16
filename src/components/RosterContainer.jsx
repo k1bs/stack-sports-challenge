@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Player from './Player.jsx'
 import genHelpers from '../helpers/gen-helpers'
-import faker from 'faker'
 
 class RosterContainer extends Component {
   constructor () {

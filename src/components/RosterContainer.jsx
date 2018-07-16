@@ -124,11 +124,11 @@ class RosterContainer extends Component {
         <div className='container'>
           <div className='columns'>
             <div className='column is-8'>
-              <p className='title is-5'>Starting Lineup</p>
+              <h4 className='title is-4'>Starting Lineup</h4>
               {this.renderStarters()}
             </div>
             <div className='column'>
-              <p className='title is-5'>Bench</p>
+              <h4 className='title is-4'>Bench</h4>
               {this.renderSubs()}
             </div>
           </div>

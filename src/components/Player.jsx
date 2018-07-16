@@ -17,6 +17,11 @@ class Player extends Component {
         <p>Strength: {this.props.player.scores.strength}</p>
         <p>Speed: {this.props.player.scores.speed}</p>
         <p>Agility: {this.props.player.scores.agility}</p>
+        <p>Total Attribute Score: {
+          this.props.player.scores.strength +
+          this.props.player.scores.speed +
+          this.props.player.scores.agility
+        }</p>
       </article>
     )
   }

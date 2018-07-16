@@ -15,7 +15,7 @@ class Landing extends Component {
   handleInputChange (event) {
     const value = event.target.value
     let validity
-    if (value.length > 1) {
+    if (value.length > 1 && value.charAt(0) !== ' ') {
       validity = 'valid'
     } else {
       validity = 'invalid'
@@ -33,7 +33,7 @@ class Landing extends Component {
       this.props.handleRosterNameSubmit(event, this.state.teamName)
     } else {
       this.setState({
-        message: 'Team Name must be at least 2 characters'
+        message: 'Team Name must be at least 2 characters, and cannot begin with a space'
       })
     }
   }

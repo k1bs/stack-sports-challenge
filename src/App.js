@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Header from './components/Header'
+import Landing from './components/Landing'
 import Footer from './components/Footer'
 import RosterContainer from './components/RosterContainer'
 
@@ -10,9 +11,11 @@ class App extends Component {
       rosterName: 'farts',
       namingMode: true
     }
+    this.handleRosterNameSubmit = this.handleRosterNameSubmit.bind(this)
   }
 
-  handleRosterNameSubmit (rosterName) {
+  handleRosterNameSubmit (event, rosterName) {
+    event.preventDefault()
     this.setState({
       rosterName,
       namingMode: false
@@ -23,13 +26,13 @@ class App extends Component {
     // TODO: add bang in front of namingMode
     return (
       <div className='App'>
-        {this.state.namingMode
+        {!this.state.namingMode
           ? <div>
             <Header rosterName={this.state.rosterName} />
             <RosterContainer />
             <Footer />
           </div>
-          : <p>set a nme</p>}
+          : <Landing handleRosterNameSubmit={this.handleRosterNameSubmit} />}
       </div>
     )
   }
